@@ -10,9 +10,11 @@ public class HeapSort {
       while (index != 0) {
         int parent = (index - 1) / 2;
         if (values[index] > values[parent]) {
+          // swap current value with its parent
           int temp = values[parent];
           values[parent] = values[index];
           values[index] = temp;
+          // continue to check with parent of parent.
           index = parent;
         } else {
           break;
