@@ -43,6 +43,8 @@ public class Chapter10 {
     testDelNode(35);
     // delete root
     testDelNode(60);
+    testDelNode(76);
+    testDelNode(24);
 
   }
 

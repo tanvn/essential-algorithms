@@ -146,11 +146,19 @@ public class BinaryNode {
     } else {
       // target node has 2 children.
       BinaryNode leftChild = targetNode.leftNode;
-      // left child of target node does not have a right child
+      // left child of target node does not have a right child.
+      // in this case replace the target node with its left child
       if (leftChild.rightNode == null) {
         targetNode.value = leftChild.value;
         targetNode.leftNode = null;
       } else {
+        // in case targetNode's left child has a right child.
+        // get the right-most node of its left child (because the right mode
+        // node of the targetNode's left child is nearest to the value of target
+        // node)
+        // replace the target node value with the rightmost child's value
+        // if the rightmost node has a left child, replace it with its left
+        // child.
         BinaryNode rightMostNode = targetNode.leftNode.rightNode;
         BinaryNode rightMostNodeParent = targetNode.leftNode;
         while (rightMostNode.rightNode != null) {
