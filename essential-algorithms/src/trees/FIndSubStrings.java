@@ -1,14 +1,13 @@
 package trees;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FIndSubStrings {
 
   public static void main(String[] args) {
-    String[] words = new String[] { "Apple", "Melon", "Orange", "Watermelon" };
-    String[] parts = new String[] { "a", "mel", "lon", "el", "An" };
+    String[] words1 = new String[] { "Apple", "Melon", "Orange", "Watermelon" };
+    String[] parts1 = new String[] { "a", "mel", "lon", "el", "An" };
 
     String[] words2 = new String[] { "Aaaaaaaaa", "bcdEFGh" };
     String[] parts2 = new String[] { "aaaaa", "Aaaa", "E", "z", "Zzzzz" };
@@ -19,18 +18,16 @@ public class FIndSubStrings {
     String[] parts3 = new String[] { "aaaaa", "Aaaa", "E", "z", "Zzzzz", "a",
         "mel", "lon", "el", "An", "ise", "d", "g", "wnoVV", "i", "IUMc", "P",
         "KQ", "QfRz", "Xyj", "yiHS" };
+    findSubstrings(words1, parts1);
+
+    findSubstrings(words2, parts2);
+
     findSubstrings(words3, parts3);
 
   }
 
   public static String[] findSubstrings(String[] words, String[] parts) {
     final int MAX_LENGTH = 5;
-    final Map<String, Integer> INDEX_AND_VALUES = new HashMap<>();
-    for (int i = 0; i < parts.length; i++) {
-      INDEX_AND_VALUES.put(parts[i], i);
-    }
-    System.out.println(INDEX_AND_VALUES);
-    System.out.println(Arrays.toString(words));
     Trie myTrie = new Trie();
     for (int i = 0; i < parts.length; i++) {
       myTrie.insert(parts[i]);
@@ -56,15 +53,6 @@ public class FIndSubStrings {
               // System.out.println(currentSubStr + " vs " + subStr);
               if (currentSubStr.length() < subStr.length()) {
                 wordAndSubStrings.put(word, subStr);
-              } else if (currentSubStr.length() == subStr.length()) {
-                // new substring has a smaller index
-                if (INDEX_AND_VALUES.get(currentSubStr) > INDEX_AND_VALUES
-                    .get(subStr)) {
-                  System.out.println("for word: " + word + " "
-                      + INDEX_AND_VALUES.get(currentSubStr) + currentSubStr
-                      + " vs " + INDEX_AND_VALUES.get(subStr) + subStr);
-                  wordAndSubStrings.put(word, subStr);
-                }
               }
             } else {
               wordAndSubStrings.put(word, subStr);
@@ -80,7 +68,7 @@ public class FIndSubStrings {
       }
 
     }
-    System.out.println(wordAndSubStrings);
+    // System.out.println(wordAndSubStrings);
     String[] result = new String[words.length];
     for (int i = 0; i < words.length; i++) {
       String word = words[i];
@@ -93,7 +81,7 @@ public class FIndSubStrings {
 
     }
 
-    System.out.println(Arrays.toString(result));
+    // System.out.println(Arrays.toString(result));
 
     return result;
 
