@@ -46,6 +46,7 @@ public class FindFactors {
   public static void main(String[] args) {
     System.out.println("factor : " + findFactors(84));
     System.out.println("factor : " + findFactorsFaster(1230));
+    System.out.println("factor : " + findFactorsFaster(13 * 37));
   }
 
 }
