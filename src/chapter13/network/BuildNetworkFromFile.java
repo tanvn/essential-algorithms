@@ -30,11 +30,14 @@ public class BuildNetworkFromFile {
         String name = data[0];
         int x = Integer.parseInt(data[1]);
         int y = Integer.parseInt(data[2]);
-        nodes[i - 1] = new Node(name, x, y);
-      }
+        if (nodes[i - 1] == null) {
+          nodes[i - 1] = new Node(name, x, y);
+        } else {
+          nodes[i - 1].setName(name);
+          nodes[i - 1].setX(x);
+          nodes[i - 1].setY(y);
+        }
 
-      for (int i = 1; i < lines.size(); i++) {
-        String[] data = lines.get(i).split(",");
         int numberOfLinks = (data.length - 3) / 3;
         List<Link> links = new ArrayList<>(numberOfLinks);
         for (int j = 3; j < data.length; j = j + 3) {
@@ -44,6 +47,9 @@ public class BuildNetworkFromFile {
           Link link = new Link(cost, capacity);
           Node[] connectedNodes = link.getNodes();
           connectedNodes[0] = nodes[i - 1];
+          if (nodes[index] == null) {
+            nodes[index] = new Node();
+          }
           connectedNodes[1] = nodes[index];
           links.add(link);
         }

@@ -8,6 +8,10 @@ public class Node {
   private int y;
   List<Link> links;
 
+  public Node() {
+
+  }
+
   public Node(String name, int x, int y) {
     super();
     this.name = name;
